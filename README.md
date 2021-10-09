@@ -50,8 +50,58 @@ The main components for the RFID programmer
 * some microcontroller with WiFi and Webserver capabilites
 * RFID read interface
 
+## Content of the RFID Keys
+### normal key
+* Command (10 Bytes): "Open"
+* Series identification String (20 Bytes) e.g. "Yellow-Mail-Man", "Green-Mail-Man", "NewYorkTimes"
+* Series sequence number (4 Bytes) (beginning randomly somewhere beween 123456 and 923456 and counting up in random (1-100) steps) 
+* Signature from all above signed with private key (128 Bytes) 
+
+### Command key
+* Command (10 Bytes): "Register new Series"
+* Command specific Content (Length Depending on Command)
+* Signature from all above signed with private key (128 Bytes) 
+
 ## User Stories
-###
+
+### Initializing the main security keys
+
+#### on the RFID programmer
+* Generate RSA 1024 bit(128 Bytes) public/private key pair
+* Access configuration UI of the programmer via Webbrowser
+* copy private and public key into a secure store to keep it as backup on case of loss of the programmer
+* copy private and public key into web form fields "new private" , "new public" 
+* ensure, current private key is set
+* place rfid(2KB) on programmer and activate "write key change master key"
+
+#### on every door
+* place "write key master key" RFID on "Read surface"
+* No Reaction if RFID content as no vaild signature (must besinged with current valid master key)
+* copy public key from rfid to internal storage, remove old key and give short+long beep
+
+### Initializing a new keyset for a new service
+* 
+
+
+### Getting Access (including replacig key with follow up key)
+* place RFID on "Read surface"
+* No Reaction if RFID content as no vaild signature
+* Door Device beeps 4 times, if RFID is old key
+* Door Device beeps 2 times, if RFID is valid but not in allowed time window
+* Door Device acitivates door opener , if RFID is currently valid or follow up key(higher sequence number) of currently valid key
+* Door Device marks old RFID as "deleted" and stores new RFID key as valid
+
+### Registering a new keys (first keys of every series)
+* User places RFID on "Reade surface"
+* No Reaction if RFID content as no vaild signature
+* IF RFID contains a "Register new key" command beep 1 time
+* Wait for next key
+* User places RFID on "Reade surface"
+* if RFID content has no vaild signature, Reset procedure and give 4 beeps 
+* Register new key as valid, beep 3 times
+* wait for next key (see previous 3 steps)
+* in case of 20 seconds without a new key, give 4 bees and go back to normal operation
+
 
 ## Security Concept
 
