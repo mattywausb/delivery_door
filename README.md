@@ -1,4 +1,4 @@
-# delivery_door
+# Delivery Door
 
 ## Motivation
 
@@ -22,7 +22,24 @@ Instead of handing out normal door keys to the delivery services, they will get 
 The chips are indivudually coded for every service. In case of a loss, the specific service get a new code  and the old code is removed from the access list.
 To prevent/detect copies of the chip, logging and checking for unusual behaviour can provide a barrier. Also a usage restriction, e.g. timewindow of repetivie use, can be a barrier 
 
+## Considerations about User interface 
 
-setup and design restrictions
+In daily use, the existence of the device should only be visible by a marking on the door or panel, where to place the rfid chip. The main feedback to the user is the opening of the door. To assist the user in case of incorrect handling, an acousting signal should be provided in case of an invalid key or reading error.
 
-The basic setup onl
+Validating replacement keys and invalidating old keys, should not require physical contact to the device by the administrator.
+
+Adding a new key must be a secured process, so nobody, exept an authorized user can register a new key or keyset. This can be achieved by enforcing the need of physical access to the device and keeping necessary elements in locked compartments.
+
+Extended external communication of the device should also only be activated by operations, that need physical access to the device. In normal operations mode, the device should never provide other interfaces then the RFID sensor, the door opener and probably some command buttons and a display in a locked compartment.
+
+Power supply should be compatible to anything, already available in the door bell board.
+
+## Components
+
+The main components will be
+* some microcontroller (probably with optioal Network connectivity)
+* an rfid read interface
+* acoustic singalling device (beeper)
+* Releais and driver to switch door opener
+* optional LCD Matrix display
+
