@@ -119,3 +119,10 @@ The rfid chips are the main part of interface. Not only to give access, but also
 
 ### Setting up truested key set
 This procedure 
+
+## Commands
+Open
+
+Set Master Key
+
+Enter wifi (content SSID + Password)
