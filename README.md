@@ -34,12 +34,28 @@ Extended external communication of the device should also only be activated by o
 
 Power supply should be compatible to anything, already available in the door bell board.
 
+Beside the door controlling compontend there needs to be a key configuration device, where the rfid key will get the proper settings. This device must be kept securely locked by the administrator, since it can be used to create new valid keys.
+
 ## Components
 
-The main components will be
-* some microcontroller (probably with optioal Network connectivity)
+The main components for every door will be
+* some microcontroller (probably with optional WiFi and Webserver capabilites)
 * an rfid read interface
 * acoustic singalling device (beeper)
 * Releais and driver to switch door opener
 * optional LCD Matrix display
+* Power Supply
 
+The main components for the RFID programmer
+* some microcontroller with WiFi and Webserver capabilites
+* RFID read interface
+
+## User Stories
+###
+
+## Security Concept
+
+The rfid chips are the main part of interface. Not only to give access, but also to give commands to the door device. Auhtentification  and authorization is implemented by using trusted signatures with assymetric encryption. The second target to manipulation is the microcontroller itself. Its integrity relies on the physical access security, which might only have a level of a reliable breach detection.
+
+### Setting up truested key set
+This procedure 
