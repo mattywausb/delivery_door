@@ -69,6 +69,7 @@ The main components for the RFID programmer
 #### on the RFID programmer
 * Generate RSA 1024 bit(128 Bytes) public/private key pair
 * Access configuration UI of the programmer via Webbrowser
+* choose: "Setup Master Key"
 * copy private and public key into a secure store to keep it as backup on case of loss of the programmer
 * copy private and public key into web form fields "new private" , "new public" 
 * ensure, current private key is set
@@ -80,7 +81,16 @@ The main components for the RFID programmer
 * copy public key from rfid to internal storage, remove old key and give short+long beep
 
 ### Initializing a new keyset for a new service
-* 
+* Access configuration UI of the programmer via Webbrowser
+* choose: "Setup key series"
+
+### provide a follow up key for a key set
+
+
+### remove an active keyset
+* Generate a replacement key for the key set
+* use the replacement key on every door 
+
 
 
 ### Getting Access (including replacig key with follow up key)
